@@ -1,7 +1,6 @@
-using SparseArrays, LinearAlgebra, KrylovKit
 include("spinOperators.jl")
 
-function buildLatticeOperators(L::Array{Int64,1}, spin::Float64)
+function buildLatticeOperators(L::Array{Int64,1}, spin::Float64; do_project::Bool=false, projZ::Float64)
     d = Int64(2*spin+1)
     size = prod(L)
     D = d^size

@@ -7,7 +7,5 @@ function buildAdjacencyMatrix(L::Array{Int64,1})
         r+L[1]<=size ? AM[r, r+L[1]] = 1 : Nothing
         mod(r,L[1])!=0 && r+L[1]+1<=size ? AM[r, r+L[1]+1] = 1 : Nothing
     end
-    # show(spy(AM))
-    # display(gplot(DiGraph(AM), nodelabel=1:size))
     return AM
 end

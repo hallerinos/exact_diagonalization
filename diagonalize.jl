@@ -7,5 +7,6 @@ function diagonalize(ham::SparseMatrixCSC{Complex{Float64},Int64}, nev::Int64, t
     λpr = unique(λ_)
     λₙ = [(l,count(x->x==l,λ_)) for l in λpr]
     print(λₙ)
+
     return λ, ϕ
 end

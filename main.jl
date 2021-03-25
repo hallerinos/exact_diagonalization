@@ -1,8 +1,5 @@
-using LightGraphs
-using GraphPlot
-using UnicodePlots
-using Arpack
-using LuxurySparse
+using SparseArrays, LinearAlgebra, KrylovKit
+using LightGraphs, GraphPlot, UnicodePlots
 using Revise
 
 includet("buildLatticeOperators.jl")
@@ -23,8 +20,12 @@ nev = 20
 # which tolerance in the eigenvalue problem
 tol = 1e-12
 
-@time SO = buildLatticeOperators(L, spin)
-@time AM = buildAdjacencyMatrix(L)
-@time ham = buildHamiltonian(SO, AM, J₁, J₂, J₃)
+@time AM = buildAdjacencyMatrix(L)  # build the adjacency matrix which defines the lattice connections
+# display(gplot(DiGraph(AM), nodelabel=1:prod(L)))  # visualize the resulting graph
+@time SO = buildLatticeOperators(L, spin, do_project=do_project, projZ=projZ)  # construct the lattice spin operators
+@time ham = buildHamiltonian(SO, AM, J₁, J₂, J₃)    # construct the hamiltonian
+# show(spy(real(ham)))
+# println()
 @time λ, ϕ = diagonalize(ham, nev, tol)
-0;
+
+0;  # just used to suppress the REPL output
