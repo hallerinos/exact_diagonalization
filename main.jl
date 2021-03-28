@@ -33,20 +33,21 @@ display(gplot(DiGraph(AM), nodelabel=1:prod(numsites)))  # visualize the resulti
 # the magnetic field
 # B = range(0,1,length=101)
 B = range(0,1,length=101)
-ii = 0
+energies = []
 for bb in B
+    λ = Nothing
+    ϕ = Nothing
+    ham = Nothing
     @time ham = buildHamiltonian(SO, AM, J₁, J₂, J₃, Kᵤ, 𝐃, bb)    # construct the hamiltonian
     # # show(spy(real(ham)))
     # # println()
     @time λ, ϕ = diagonalize(ham, nev, tol)
 
-    jldopen("system"*string(bb)*".jld", "w") do file
+    jldopen("saves/magField"*string(bb)*".jld", "w") do file
         write(file, "λ", λ)
         write(file, "ϕ", ϕ)
         write(file, "ham", ham)
     end
-
-    ii+=1
 end
 
-0;  # just used to suppress the REPL output]
+0;  # just used to suppress the REPL output]x
