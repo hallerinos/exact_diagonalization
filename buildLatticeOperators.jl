@@ -31,5 +31,5 @@ function buildLatticeOperators(numsites::Int64, spin::Float64; do_project::Bool=
         end
     end
 
-    return SO
+    return SO, magZ
 end
