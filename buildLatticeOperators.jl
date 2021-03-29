@@ -1,6 +1,6 @@
 include("spinOperators.jl")
 
-function buildLatticeOperators(numsites::Int64, spin::Float64; do_project::Bool=false, projZ::Float64)
+function buildLatticeOperators(numsites::Int64, spin::Float64; do_project::Bool=false, projZ::Float64=0.0)
     d = Int64(2*spin+1)
     D = d^numsites
     Sx, Sy, Sz, Id, Sm, Sp = spinOperators(spin)
