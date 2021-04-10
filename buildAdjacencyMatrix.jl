@@ -5,9 +5,9 @@ function buildAdjacencyMatrixRegular(L::Array{Int64,1})
     for r=1:numsites
         # the red links
         mod(r,L[1])!=0 && r+1<=numsites ? AM[r, r+1] = 1 : Nothing
-        # the blue links
-        mod(r,L[1])!=0 && r+L[1]+1<=numsites ? AM[r, r+L[1]+1] = 2 : Nothing
         # the green links
+        mod(r,L[1])!=0 && r+L[1]+1<=numsites ? AM[r, r+L[1]+1] = 2 : Nothing
+        # the blue links
         r+L[1]<=numsites ? AM[r, r+L[1]] = 3 : Nothing
     end
     return AM,numsites

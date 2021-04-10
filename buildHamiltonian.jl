@@ -14,12 +14,12 @@ function buildHamiltonian(SO::Array{SparseMatrixCSC,2}, AM::Array{Float64,2}, J�
             ham += 𝐃*(SO[3,r]*SO[1,rpr] - SO[1,r]*SO[3,rpr])
         end
         if AM[r, rpr] == 2
-            # the blue DM terms
+            # the green DM terms
             ham += 0.5*𝐃*(SO[3,r]*SO[1,rpr] - SO[1,r]*SO[3,rpr])
             ham += sqrt(3)/2*𝐃*(SO[2,r]*SO[3,rpr] - SO[3,r]*SO[2,rpr])
         end
         if AM[r, rpr] == 3
-            # the green DM terms
+            # the blue DM terms
             ham += -0.5*𝐃*(SO[3,r]*SO[1,rpr] - SO[1,r]*SO[3,rpr])
             ham += sqrt(3)/2*𝐃*(SO[2,r]*SO[3,rpr] - SO[3,r]*SO[2,rpr])
         end

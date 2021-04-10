@@ -17,13 +17,13 @@ Kᵤ = 0.0
 # the DMI strength (use 1/sqrt(3) to make the DMI vector of unit norm)
 𝐃 = 1.0
 # x, y, z couplings of the Heisenberg Hamiltonian
-J₁ = -0.5
-J₂ = -0.5
-J₃ = -0.5
+J₁ = -0.5*𝐃
+J₂ = -0.5*𝐃
+J₃ = -0.5*𝐃
 # how many eigenvalues to take
-nev = 20
+nev = 50
 # which tolerance in the eigenvalue problem
-tol = 1e-12
+tol = 1e-16
 
 @time AM,numsites = buildAdjacencyMatrixSnowflakePBC()  # build the adjacency matrix which defines the lattice connections
 # @time AM,numsites = buildAdjacencyMatrixRegular(L)  # build the adjacency matrix which defines the lattice connections
@@ -32,7 +32,7 @@ display(gplot(DiGraph(AM), nodelabel=1:prod(numsites)))  # visualize the resulti
 
 # the magnetic field
 # B = range(0,1,length=101)
-B = range(0,1,length=101)
+B = range(0,0.1,length=11)
 energies = []
 for bb in B
     λ = Nothing
@@ -50,4 +50,4 @@ for bb in B
     end
 end
 
-0;  # just used to suppress the REPL output]x
+0;  # just used to suppress the REPL output
