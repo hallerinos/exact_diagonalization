@@ -24,9 +24,9 @@ J₃ = -0.5*𝐃
 # J₂ = 1.0
 # J₃ = 1.0
 # how many eigenvalues to take
-nev = 10
+nev = 1
 # which tolerance in the eigenvalue problem
-tol = 1e-16
+tol = 0.0
 
 @time AM,numsites = buildAdjacencyMatrixRegular(L)  # build the adjacency matrix which defines the lattice connections
 # @time AM,numsites = buildAdjacencyMatrixRegular(L)  # build the adjacency matrix which defines the lattice connections
@@ -34,7 +34,8 @@ tol = 1e-16
 @time SO, magZ = buildLatticeOperators(numsites, spin, do_project=do_project, projZ=projZ)  # construct the lattice spin operators
 
 # the magnetic field
-B = range(0,1,length=3)
+# B = range(0,1,length=101)
+B = [0.0]
 # B = range(0,0.5,length=2)
 energies = []
 for bb in B
@@ -55,4 +56,4 @@ for bb in B
     end
 end
 
-0;  # just used to suppress the REPL output
+0;  # just used to suppress the REPL output 
