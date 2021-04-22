@@ -54,11 +54,11 @@ scatter(ϵData[1,:],ϵData[2,:], color=ϵData[3,:], legend=false, xlabel=L"B", y
 fn = "energy.pdf"
 savefig(fn)
 
-cpData = hcat([[B[idx],real(cp),colors[idy]] for (idx,cps) in enumerate(chiralProductExp) for (idy,cp) in enumerate(cps)]...)
+cpData = hcat([[B[idx],real(cp),colors[idy]] for (idx,cps) in enumerate(chiralProductSumExp) for (idy,cp) in enumerate(cps)]...)
 # scatter(cpData[1,:],-48*cpData[2,:]/pi, color=cpData[3,:], legend=false, xlabel=L"B", ylabel=L"\langle Q_\psi\rangle = 1/\pi\sum_{(i,j,k)\in\{\Delta,\nabla\}}\langle{S}_i\cdot({S}_j\times{S}_k)\rangle")
 # fn = "Q_psi_diag.pdf"
 # savefig(fn)
-scatter(cpData[1,:],-48*cpData[2,:]/pi, color=cpData[3,:], legend=false, xlabel=L"B", ylabel=L"\langle Q_\psi\rangle = 48/\pi\langle{S}_1\cdot({S}_2\times{S}_5)\rangle")
+scatter(cpData[1,:],cpData[2,:]/pi, color=cpData[3,:], legend=false, xlabel=L"B", ylabel=L"\langle Q_\psi\rangle = 48/\pi\langle{S}_1\cdot({S}_2\times{S}_5)\rangle")
 fn = "Q_psi_2_diag.pdf"
 savefig(fn)
 

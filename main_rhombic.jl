@@ -30,12 +30,11 @@ tol = 0.0
 
 @time AM,numsites = buildAdjacencyMatrixRegular(L)  # build the adjacency matrix which defines the lattice connections
 # @time AM,numsites = buildAdjacencyMatrixRegular(L)  # build the adjacency matrix which defines the lattice connections
-# display(gplot(DiGraph(AM), nodelabel=1:prod(numsites)))  # visualize the resulting graph
+display(gplot(DiGraph(AM), nodelabel=1:prod(numsites)))  # visualize the resulting graph
 @time SO, magZ = buildLatticeOperators(numsites, spin, do_project=do_project, projZ=projZ)  # construct the lattice spin operators
 
 # the magnetic field
-# B = range(0,1,length=101)
-B = [0.0]
+B = range(-1,0,length=101)
 # B = range(0,0.5,length=2)
 energies = []
 for bb in B
