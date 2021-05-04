@@ -9,7 +9,7 @@ L=[3,3]
 xs, ys = constructLatticeFlake(L)
 
 SISJ = Array{SparseMatrixCSC}(undef,(3,numsites,numsites))
-for r=1:numsites-1, rpr=r+1:numsites, s=1:3
+for r=1:numsites, rpr=1:numsites, s=1:3
     @info r,rpr,s
     SISJ[s,r,rpr] = SO[s,r]*SO[s,rpr]
 end
@@ -115,7 +115,7 @@ for (idx,bb) in enumerate(B)
     magGS[idx] = [ϕGS[:,ii]'*magZ/numsites*ϕGS[:,ii] for ii in 1:size(ϕGS,2)]
 
     # take the exp val of the correlators
-    for r=1:numsites, rpr=r+1:numsites
+    for r=1:numsites, rpr=1:numsites
         @info idx,bb,r,rpr
         for s=1:3
             submat = ϕGS'*SISJ[s,r,rpr]*ϕGS
