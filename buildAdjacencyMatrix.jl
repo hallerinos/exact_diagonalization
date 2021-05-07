@@ -121,6 +121,19 @@ function buildAdjacencyMatrixRegular(L::Array{Int64,1})
     return AM,numsites
 end
 
+function buildAdjacencyMatrixSquareLattice(L::Array{Int64,1})
+    numsites = prod(L)
+    # build the adjacency matrix
+    AM = zeros(numsites, numsites)
+    for r=1:numsites
+        # the horizontal links
+        mod(r,L[1])!=0 && r+1<=numsites ? AM[r, r+1] = 1 : Nothing
+        # the vertical links
+        r+L[1]<=numsites ? AM[r, r+L[1]] = 2 : Nothing
+    end
+    return AM,numsites
+end
+
 function buildAdjacencyMatrixSnowflake()
     L = 3
     numsites = 1 - 3*L + 3*L^2
