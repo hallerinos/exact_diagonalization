@@ -34,22 +34,23 @@ display(gplot(DiGraph(AM), nodelabel=1:prod(numsites)))  # visualize the resulti
 @time SO, magZ = buildLatticeOperators(numsites, spin, do_project=do_project, projZ=projZ)  # construct the lattice spin operators
 
 # the magnetic field
-B = range(0,1,length=40)
+B = range(0,1,length=5)
+D = range(0,1,length=5)
 # B = range(0,0.5,length=2)
 # B = [0.1]
 energies = []
-for bb in B
+for bb in B, dd in D
     @info bb
     λ = Nothing
     ϕ = Nothing
     ham = Nothing
-    @time ham = buildHamiltonianSquare(SO, AM, J₁, J₂, J₃, Kᵤ, 𝐃, -bb)    # construct the hamiltonian
+    @time ham = buildHamiltonianSquare(SO, AM, J₁, J₂, J₃, Kᵤ, dd, -bb)    # construct the hamiltonian
     # # show(spy(real(ham)))
     # # println()
     @time λ, ϕ = diagonalize(ham, nev, tol)
     println(λ[1])
 
-    jldopen("saves_square_OBC/magField"*string(bb)*".jld", "w") do file
+    jldopen("saves_square_OBC/magField"*string(bb)*string(dd)*".jld", "w") do file
         write(file, "λ", λ)
         write(file, "ϕ", ϕ)
         write(file, "ham", ham)
